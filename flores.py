@@ -145,8 +145,7 @@ def evaluate_selected_languages_comparison(original_dir, corrected_dir, devtest_
                 hyp_original = hyp
                 src_original = src
 
-            original_scores = evaluate_metrics(ref_original, hyp_original, src_original, lang, 
-                                             comet_model, nllb_tokenizer, nllb_model, nllb_device, "Original")
+            original_scores = evaluate_metrics(ref_original, hyp_original, src_original, lang, comet_model, nllb_tokenizer, nllb_model, nllb_device, "Original")
 
         # Evaluate with corrected dataset
         if corrected_dev_file.exists():
@@ -163,8 +162,7 @@ def evaluate_selected_languages_comparison(original_dir, corrected_dir, devtest_
                 hyp_corrected = hyp
                 src_corrected = src
 
-            corrected_scores = evaluate_metrics(ref_corrected, hyp_corrected, src_corrected, lang, 
-                                              comet_model, nllb_tokenizer, nllb_model, nllb_device, "Corrected")
+            corrected_scores = evaluate_metrics(ref_corrected, hyp_corrected, src_corrected, lang, comet_model, nllb_tokenizer, nllb_model, nllb_device, "Corrected")
 
         # Compare results
         if original_scores and corrected_scores:
