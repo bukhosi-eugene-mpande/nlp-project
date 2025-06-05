@@ -73,7 +73,6 @@ def evaluate_metrics(refs, hyps, srcs, lang_code, comet_model, nllb_tokenizer, n
     print(f"NLLB Avg Loss: {avg_loss:.4f}")
     print(f"NLLB Avg Perplexity: {avg_ppl:.4f}")
 
-    # Return scores for comparison
     return {
         'bleu': bleu.score,
         'chrf': chrf.score,
@@ -97,14 +96,6 @@ def compare_datasets(original_scores, corrected_scores, lang_code):
         print(f"{metric:<15} {orig:<10.4f} {corr:<10.4f} {diff:<12.4f} {pct_change:<10.2f}%")
 
 def evaluate_selected_languages_comparison(original_dir, corrected_dir, devtest_dir):
-    """
-    Compare evaluation on original vs corrected FLORES datasets
-    
-    Args:
-        original_dir: Directory containing original FLORES dev files
-        corrected_dir: Directory containing corrected FLORES dev files  
-        devtest_dir: Directory containing devtest files (translations to evaluate)
-    """
     selected_langs = ['hau_Latn', 'zul_Latn', 'nso_Latn', 'tso_Latn']
 
     print("Loading COMET model...")
@@ -129,12 +120,11 @@ def evaluate_selected_languages_comparison(original_dir, corrected_dir, devtest_
         # Read the translation hypotheses (same for both comparisons)
         hyp = read_file(devtest_file)
         
-        # Read source sentences (assuming English source exists)
-        src_file = Path(original_dir) / "eng_Latn.dev"  # Adjust path as needed
+        # Read source sentences
+        src_file = Path(original_dir) / "eng_Latn.dev"
         if src_file.exists():
             src = read_file(src_file)
         else:
-            # If no separate source file, use the original dev as source
             src = read_file(original_dev_file) if original_dev_file.exists() else hyp
 
         original_scores = None
@@ -185,13 +175,10 @@ def evaluate_selected_languages_comparison(original_dir, corrected_dir, devtest_
             print(f"Corrected dataset not found for {lang}")
 
 if __name__ == "__main__":
-    # Update these paths based on your directory structure
+
     original_dir = "dev"          # Original FLORES dev files
-    corrected_dir = "Corr_devnull"        # Corrected FLORES dev files (from GitHub repo)
-    devtest_dir = "devtest"                       # Your translation outputs to evaluate
+    corrected_dir = "Corr_devnull"  
+    devtest_dir = "devtest" 
     
-    # Download the corrected dataset first:
-    # git clone https://github.com/dsfsi/flores-fix-4-africa.git
-    # Then update the corrected_dir path accordingly
     
     evaluate_selected_languages_comparison(original_dir, corrected_dir, devtest_dir)
