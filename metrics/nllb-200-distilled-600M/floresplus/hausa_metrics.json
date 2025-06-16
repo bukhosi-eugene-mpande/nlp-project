@@ -1,0 +1,10 @@
+{
+    "BLEU": 23.45202344609175,
+    "chrF": 51.07532449671234,
+    "BERTScore": 0.8198699951171875,
+    "COMET": 0.6381562295270414,
+    "Error_Distribution": {
+        "missing_words": 11646,
+        "extra_words": 10599
+    }
+}

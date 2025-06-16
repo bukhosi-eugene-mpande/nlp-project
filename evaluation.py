@@ -20,6 +20,7 @@ Original file is located at
 # %pip install sentence-transformers
 # %pip install unbabel-comet
 # %pip install sacremoses
+# %pip install huggingface_hub
 
 from datasets import load_dataset
 import torch
@@ -43,12 +44,14 @@ import os
 from datetime import datetime
 import shutil
 import os
+from huggingface_hub import login
 
 def clean_directories():
     directories_to_remove = [
         "translations",
         "flores101",
         "flores200",
+        "floresplus",
         "floresfixforafrica",
         "metrics"
     ]
@@ -63,7 +66,7 @@ def clean_directories():
         except Exception as e:
             print(f"Error removing {directory}: {str(e)}")
 
-clean_directories()
+# clean_directories()
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -97,6 +100,8 @@ os.makedirs("translations/opus-mt-en-nso", exist_ok=True)
 
 os.makedirs("translations/opus-mt-en-ha", exist_ok=True)
 
+os.makedirs("translations/m2m100_1.2B", exist_ok=True)
+
 # folders to store refrences for flores 101
 
 os.makedirs("flores101", exist_ok=True)
@@ -123,6 +128,18 @@ os.makedirs("flores200/zulu", exist_ok=True)
 
 # folders to store refrences for the fix for africa
 
+os.makedirs("floresplus", exist_ok=True)
+
+os.makedirs("floresplus/english-sources", exist_ok=True)
+
+os.makedirs("floresplus/northern-sotho", exist_ok=True)
+
+os.makedirs("floresplus/hausa", exist_ok=True)
+
+os.makedirs("floresplus/zulu", exist_ok=True)
+
+# folders to store refrences for the fix for africa
+
 os.makedirs("floresfixforafrica", exist_ok=True)
 
 os.makedirs("floresfixforafrica/english-sources", exist_ok=True)
@@ -143,6 +160,8 @@ os.makedirs("metrics/nllb-200-distilled-600M/flores101", exist_ok=True)
 
 os.makedirs("metrics/nllb-200-distilled-600M/flores200", exist_ok=True)
 
+os.makedirs("metrics/nllb-200-distilled-600M/floresplus", exist_ok=True)
+
 os.makedirs("metrics/nllb-200-distilled-600M/floresfixforafrica", exist_ok=True)
 
 #metrics folders for m2m
@@ -152,7 +171,20 @@ os.makedirs("metrics/m2m100_418M/flores101", exist_ok=True)
 
 os.makedirs("metrics/m2m100_418M/flores200", exist_ok=True)
 
+os.makedirs("metrics/m2m100_418M/floresplus", exist_ok=True)
+
 os.makedirs("metrics/m2m100_418M/floresfixforafrica", exist_ok=True)
+
+#metrics folders for m2m
+os.makedirs("metrics/m2m100_1.2B", exist_ok=True)
+
+os.makedirs("metrics/m2m100_1.2B/flores101", exist_ok=True)
+
+os.makedirs("metrics/m2m100_1.2B/flores200", exist_ok=True)
+
+os.makedirs("metrics/m2m100_1.2B/floresplus", exist_ok=True)
+
+os.makedirs("metrics/m2m100_1.2B/floresfixforafrica", exist_ok=True)
 
 #metrics folders for nllb-200-distilled-1.3B
 os.makedirs("metrics/nllb-200-distilled-1.3B", exist_ok=True)
@@ -160,6 +192,8 @@ os.makedirs("metrics/nllb-200-distilled-1.3B", exist_ok=True)
 os.makedirs("metrics/nllb-200-distilled-1.3B/flores101", exist_ok=True)
 
 os.makedirs("metrics/nllb-200-distilled-1.3B/flores200", exist_ok=True)
+
+os.makedirs("metrics/nllb-200-distilled-1.3B/floresplus", exist_ok=True)
 
 os.makedirs("metrics/nllb-200-distilled-1.3B/floresfixforafrica", exist_ok=True)
 
@@ -170,6 +204,8 @@ os.makedirs("metrics/opus-mt-en-nso/flores101", exist_ok=True)
 
 os.makedirs("metrics/opus-mt-en-nso/flores200", exist_ok=True)
 
+os.makedirs("metrics/opus-mt-en-nso/floresplus", exist_ok=True)
+
 os.makedirs("metrics/opus-mt-en-nso/floresfixforafrica", exist_ok=True)
 
 #metrics folders for opus-mt-en-ha
@@ -178,6 +214,8 @@ os.makedirs("metrics/opus-mt-en-ha", exist_ok=True)
 os.makedirs("metrics/opus-mt-en-ha/flores101", exist_ok=True)
 
 os.makedirs("metrics/opus-mt-en-ha/flores200", exist_ok=True)
+
+os.makedirs("metrics/opus-mt-en-ha/floresplus", exist_ok=True)
 
 os.makedirs("metrics/opus-mt-en-ha/floresfixforafrica", exist_ok=True)
 
@@ -212,6 +250,24 @@ hau_dataset_flores_200_training = load_dataset("Muennighoff/flores200", name="ha
 #zulu
 zul_dataset_flores_200_test = load_dataset("Muennighoff/flores200", name="zul_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
 zul_dataset_flores_200_training = load_dataset("Muennighoff/flores200", name="zul_Latn", split="dev", trust_remote_code=True, cache_dir=None)
+
+login(token="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")
+
+#english
+eng_dataset_flores_plus_test = load_dataset("openlanguagedata/flores_plus", name="eng_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
+eng_dataset_flores_plus_training = load_dataset("openlanguagedata/flores_plus", name="eng_Latn", split="dev", trust_remote_code=True, cache_dir=None)
+
+#nothern sotho
+nso_dataset_flores_plus_test = load_dataset("openlanguagedata/flores_plus", name="nso_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
+nso_dataset_flores_plus_training = load_dataset("openlanguagedata/flores_plus", name="nso_Latn", split="dev", trust_remote_code=True, cache_dir=None)
+
+#hausa
+hau_dataset_flores_plus_test = load_dataset("openlanguagedata/flores_plus", name="hau_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
+hau_dataset_flores_plus_training = load_dataset("openlanguagedata/flores_plus", name="hau_Latn", split="dev", trust_remote_code=True, cache_dir=None)
+
+#zulu
+zul_dataset_flores_plus_test = load_dataset("openlanguagedata/flores_plus", name="zul_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
+zul_dataset_flores_plus_training = load_dataset("openlanguagedata/flores_plus", name="zul_Latn", split="dev", trust_remote_code=True, cache_dir=None)
 
 # data links
 zul_dev_url = "https://raw.githubusercontent.com/dsfsi/flores-fix-4-africa/main/data/corrected/dev/zul_Latn.dev"
@@ -269,6 +325,36 @@ with open("flores200/english-sources/flores200.english.source.test.txt", "w", en
 
 with open("flores200/english-sources/flores200.english.source.training.txt", "w", encoding="utf-8") as f:
     f.writelines(line["sentence"] + "\n" for line in eng_dataset_flores_200_training)
+
+# English Sources for flores 200
+with open("floresplus/english-sources/floresplus.english.source.test.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["sentence"] + "\n" for line in eng_dataset_flores_200_test)
+
+with open("floresplus/english-sources/floresplus.english.source.training.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["sentence"] + "\n" for line in eng_dataset_flores_200_training)
+
+# Northern Sotho
+
+with open("floresplus/northern-sotho/floresplus.northern-sotho.ref.test.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["text"] + "\n" for line in nso_dataset_flores_plus_test)
+
+with open("floresplus/northern-sotho/floresplus.northern-sotho.ref.training.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["text"] + "\n" for line in nso_dataset_flores_plus_training)
+
+# Hausa
+
+with open("floresplus/hausa/floresplus.hausa.ref.test.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["text"] + "\n" for line in hau_dataset_flores_plus_test)
+
+with open("floresplus/hausa/floresplus.hausa.ref.training.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["text"] + "\n" for line in hau_dataset_flores_plus_training)
+
+# Zulu
+with open("floresplus/zulu/floresplus.zulu.ref.test.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["text"] + "\n" for line in zul_dataset_flores_plus_test)
+
+with open("floresplus/zulu/floresplus.zulu.ref.training.txt", "w", encoding="utf-8") as f:
+    f.writelines(line["text"] + "\n" for line in zul_dataset_flores_plus_training)
 
 # Northern Sotho
 
@@ -611,8 +697,8 @@ def translate_using_m2m(
     output_file,
     target_lang_code,
     device,
+    model_name,
     batch_size=16,
-    model_name="facebook/m2m100_418M",
     max_length=200  # Added max length parameter
 ):
     # Load model and tokenizer directly for more control
@@ -755,6 +841,14 @@ models = [
         }
     },
     {
+        "m2m100_1.2B" : "facebook/m2m100_1.2B",
+        "lang_codes" : {
+            "hau": "ha",
+            "nso": "ns",
+            "zul": "zu"
+        }
+    },
+    {
         "opus-mt-en-nso" : "Helsinki-NLP/opus-mt-en-nso",
         "lang_codes" : {
             "nso": "nso",
@@ -799,18 +893,18 @@ for model in models:
             if(model_name == "opus-mt-en-ha"):
               test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, hau_dataset_flores_101_test)
               translate_using_opus(test_data,translations_file,lang_codes[code],device)
-            elif(model_name == "m2m100_418M"):
+            elif(model_name == "m2m100_418M" or model_name == "m2m100_1.2B"):
               test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, hau_dataset_flores_101_test)
-              translate_using_m2m(eng_dataset_test,translations_file,lang_codes[code],device)
+              translate_using_m2m(eng_dataset_test,translations_file,lang_codes[code],device,model_path)
             else:
               test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, hau_dataset_flores_101_test)
               translate_english_to_target_lang(model, tokenizer, device, test_data, translations_file, code, lang_codes)
 
           elif(lang == "zulu"):
               # handling nothern zulu translations
-              if(model_name == "m2m100_418M"):
+              if(model_name == "m2m100_418M" or model_name == "m2m100_1.2B"):
                 test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, zul_dataset_flores_101_test)
-                translate_using_m2m(eng_dataset_test,translations_file,lang_codes[code],device)
+                translate_using_m2m(eng_dataset_test,translations_file,lang_codes[code],device,model_path)
               else:
                 test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, zul_dataset_flores_101_test)
                 translate_english_to_target_lang(model, tokenizer, device, test_data, translations_file, code, lang_codes)
@@ -820,9 +914,9 @@ for model in models:
             if(model_name == "Helsinki-NLP/opus-mt-en-nso"):
               test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, nso_dataset_flores_101_test)
               translate_using_opus(test_data,translations_file,lang_codes[code],device)
-            elif(model_name == "m2m100_418M"):
+            elif(model_name == "m2m100_418M" or model_name == "m2m100_1.2B"):
                 test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, nso_dataset_flores_101_test)
-                translate_using_m2m(eng_dataset_test,translations_file,lang_codes[code],device)
+                translate_using_m2m(eng_dataset_test,translations_file,lang_codes[code],device,model_path)
             else:
               test_data = create_dataset_from_sentences_with_dict(eng_dataset_test, nso_dataset_flores_101_test)
               translate_english_to_target_lang(model, tokenizer, device, test_data, translations_file, code, lang_codes)
@@ -830,6 +924,7 @@ for model in models:
 flores_datasets = [
     "flores101",
     "flores200",
+    "floresplus",
     "floresfixforafrica",
 ]
 
@@ -921,6 +1016,7 @@ def zip_folders():
         "translations",
         "flores101",
         "flores200",
+        "floresplus",
         "floresfixforafrica",
         "metrics"
     ]
