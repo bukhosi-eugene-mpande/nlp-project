@@ -1,6 +1,0 @@
-{
-    "BLEU": 0.8229165355071034,
-    "chrF": 11.288500986004882,
-    "BERTScore": 0.5615159869194031,
-    "error": "name 'exit' is not defined"
-}
