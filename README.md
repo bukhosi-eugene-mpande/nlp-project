@@ -1,7 +1,7 @@
 <div align="center">
 
 # Rewriting the Narrative
-### *Machine Translation Evaluation for African Languages*
+### *Evaluating Machine Translation in African Languageswith Corrected FLORES Data*
 
 
 ![African Languages](https://img.shields.io/badge/Languages-Hausa%20%7C%20Northern%20Sotho%20%7C%20Zulu-brightgreen?style=for-the-badge)
@@ -116,7 +116,7 @@ This project evaluates the following translation models:
 ## Evaluation Metrics
 ### **BLEU Score**
 > Bilingual Evaluation Understudy
-> - 📊 N-gram precision matching
+> -  N-gram precision matching
 
 ### **chrF Score**  
 > Character n-gram F-score
