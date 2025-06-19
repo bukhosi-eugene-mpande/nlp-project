@@ -26,6 +26,7 @@
 - [Required Packages](#required-packages)
 - [Running the code](#running-the-code)
 - [Project Structure](#project-structure)
+- [Results](#results)
 ## Overview
 
 > **Breaking Down Language Barriers**: While the original FLORES benchmark provided an important step toward evaluating MT systems for under-represented languages, it contained linguistic inaccuracies that risked skewing model evaluations. In response, corrected versions of the dataset were developed to enhance accuracy and consistency. This study investigates how these corrections influence the evaluation of modern MT models in terms of accuracy, fairness, and reliability.
@@ -177,3 +178,95 @@ nlp-project/
 ├── metrics/             # Calculated metrics
 └── visualizations/      # Generated visualizations
 ```
+## Results
+
+Our evaluation generated comprehensive visualizations across multiple dimensions of the translation task. Click on each section to explore the detailed results.
+
+<details>
+<summary><b><span style="font-size: 1.2em;">Comprehensive Dashboard</span></b></summary>
+
+### Overall Evaluation Dashboard
+![Evaluation Dashboard](visualizations/evaluation_dashboard.png)
+</details>
+
+<details>
+<summary><b><span style="font-size: 1.2em;">Model Comparison by Metric</span></b></summary>
+
+### BLEU Score Comparison
+![BLEU Score Comparison](visualizations/BLEU_model_comparison.png)
+
+### chrF Score Comparison
+![chrF Score Comparison](visualizations/chrF_model_comparison.png)
+
+### BERTScore Comparison
+![BERTScore Comparison](visualizations/BERTScore_model_comparison.png)
+
+### COMET Score Comparison
+![COMET Score Comparison](visualizations/COMET_model_comparison.png)
+</details>
+
+
+<details>
+<summary><b><span style="font-size: 1.2em;">Dataset Comparison</span></b></summary>
+
+### NLLB-200-distilled-1.3B Dataset Performance
+![NLLB-200-distilled-1.3B Dataset Performance](visualizations/nllb-200-distilled-1.3B_dataset_comparison.png)
+
+### NLLB-200-distilled-600M Dataset Performance
+![NLLB-200-distilled-600M Dataset Performance](visualizations/nllb-200-distilled-600M_dataset_comparison.png)
+
+
+### M2M100 418M Dataset Performance
+![M2M100 418M Dataset Performance](visualizations/m2m100_418M_dataset_comparison.png)
+
+### M2M100 1.2B Dataset Performance
+![M2M100 1.2B Dataset Performance](visualizations/m2m100_1.2B_dataset_comparison.png)
+</details>
+
+<details>
+<summary><b><span style="font-size: 1.2em;">Error Analysis</span></b></summary>
+
+### Missing Words Error Distribution
+![Missing Words Error Distribution](visualizations/error_missing_words_heatmap.png)
+
+### Extra Words Error Distribution
+![Extra Words Error Distribution](visualizations/error_extra_words_heatmap.png)
+
+</details>
+
+<details>
+<summary><b><span style="font-size: 1.2em;">FLORES101 Error Analysis</span></b></summary>
+
+### FLORES101 Missing Words Error Distribution
+![Missing Words Error Distribution](visualizations/dataset_heatmaps/flores101_error_missing_words_heatmap.png)
+### FLORES101 Extra Words Error Distribution
+![Extra Words Error Distribution](visualizations/dataset_heatmaps/flores101_error_extra_words_heatmap.png)
+</details>
+
+<details>
+<summary><b><span style="font-size: 1.2em;">FLORES200 Error Analysis</span></b></summary>
+
+### FLORES200 Missing Words Error Distribution
+![Missing Words Error Distribution](visualizations/dataset_heatmaps/flores200_error_missing_words_heatmap.png)
+### FLORES200 Extra Words Error Distribution
+![Extra Words Error Distribution](visualizations/dataset_heatmaps/flores200_error_extra_words_heatmap.png)
+</details>
+
+<details>
+<summary><b><span style="font-size: 1.2em;">FLORES+ Error Analysis</span></b></summary>
+
+### FLORES+ Missing Words Error Distribution
+![Missing Words Error Distribution](visualizations/dataset_heatmaps/floresplus_error_missing_words_heatmap.png)
+### FLORES+ Extra Words Error Distribution
+![Extra Words Error Distribution](visualizations/dataset_heatmaps/floresplus_error_extra_words_heatmap.png)
+</details>
+
+<details>
+<summary><b><span style="font-size: 1.2em;">FLORESFIX4AFRICA Error Analysis</span></b></summary>
+
+### FLORESFIX4AFRICA Missing Words Error Distribution
+![Missing Words Error Distribution](visualizations/dataset_heatmaps/floresfixforafrica_error_missing_words_heatmap.png)
+### FLORESFIX4AFRICA Extra Words Error Distribution
+![Extra Words Error Distribution](visualizations/dataset_heatmaps/floresfixforafrica_error_extra_words_heatmap.png)
+</details>
+
