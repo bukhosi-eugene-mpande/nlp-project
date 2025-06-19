@@ -45,7 +45,7 @@ from datetime import datetime
 import shutil
 import os
 from huggingface_hub import login
-login(token="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")
+login(token="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")
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -230,7 +230,7 @@ hau_dataset_flores_200_training = load_dataset("Muennighoff/flores200", name="ha
 zul_dataset_flores_200_test = load_dataset("Muennighoff/flores200", name="zul_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
 zul_dataset_flores_200_training = load_dataset("Muennighoff/flores200", name="zul_Latn", split="dev", trust_remote_code=True, cache_dir=None)
 
-login(token="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")
+login(token="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")
 
 #english
 eng_dataset_flores_plus_test = load_dataset("openlanguagedata/flores_plus", name="eng_Latn", split="devtest", trust_remote_code=True, cache_dir=None)
