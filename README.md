@@ -8,13 +8,13 @@
 ![Models](https://img.shields.io/badge/Models-6%20State--of--the--Art-blue?style=for-the-badge)
 ![Datasets](https://img.shields.io/badge/Datasets-4%20Comprehensive-orange?style=for-the-badge)
 
-**Group 24** 
-
 <h4>Ennis Maphasha | Itumeleng Moshokoa | Bukhosi Eugene Mpande</h4>
-<br>
 
+**Group 24** 
+# 
+</div>
+<div align="center">
 *"Every language is a world. Without translation, we would inhabit parishes bordering on silence."* - George Steiner
-
 </div>
 
 ## Table of Contents
@@ -134,7 +134,6 @@ This project evaluates the following translation models:
 ### **COMET (AfriCOMET-MTL)**
 > **The African Specialist**: Neural metric trained for African languages
 > -  Specifically designed for African languages
-> -  State-of-the-art neural evaluation
 > -  Cultural and linguistic awareness
 
 # Running the Code
