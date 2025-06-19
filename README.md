@@ -1,7 +1,7 @@
 <div align="center">
 
 # Rewriting the Narrative
-### *Evaluating Machine Translation in African Languageswith Corrected FLORES Data*
+### *Evaluating Machine Translation in African Languages with Corrected FLORES Data*
 
 
 ![African Languages](https://img.shields.io/badge/Languages-Hausa%20%7C%20Northern%20Sotho%20%7C%20Zulu-brightgreen?style=for-the-badge)
@@ -144,6 +144,7 @@ pip install datasets transformers torch sacrebleu tqdm numpy regex accelerate
 pip install bert-score sentence-transformers unbabel-comet sacremoses
 pip install huggingface_hub pandas matplotlib seaborn
 ```
+> <span style="color: red">**Note:**</span> Ensure that if using Google Colab, **Colab Pro** instances are used to avoid excessive runtimes.
 
 1. To get started go to our **[Official github](https://github.com/bukhosi-eugene-mpande/nlp-project)**.
 
